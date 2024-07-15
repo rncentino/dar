@@ -1,0 +1,38 @@
+body {
+  background-color: #f5f5dc !important;
+}
+
+.custom-outline:focus {
+  outline: 1px solid #74a66f !important;
+  box-shadow: none !important;
+}
+
+.custom-btn {
+  background-color: #74a66f !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.custom-btn:hover {
+  outline: 1px solid #74a66f !important;
+  background-color: #4b7155 !important;
+}
+
+.custom-table-container {
+  margin-top: 40px;
+  border-radius: 10px;
+  padding: 25px !important;
+  color: #f9f9f9;
+  background-color: #4b7155 !important;
+}
+
+table {
+  background-color: #f5f5dc;
+  border-radius: 10px;
+}
+
+th {
+    background-color: #74a66f !important;
+    color: #f9f9f9;
+}
+
