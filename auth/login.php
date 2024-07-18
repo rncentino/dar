@@ -1,38 +1,13 @@
 <?php
-
 session_start();
-require("../config/config.php"); 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST[$username];
-    $password = $_POST[$password];
-
-    $sql = "SELECT password FROM users WHERE username = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-
-    mysqli_stmt_bind_param($stmt, "s", $username);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $hashed_password = $row["password"];
-
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION["username"] = $username;
-            header("Location: index.php");
-        } else {
-            echo "Invalid username or password";
-        }
-    } else {
-        echo "Invalid username or password";
-    }
-    mysqli_close($conn);
-} 
-
+define("APPURL", "http://localhost/dar_dms");
 ?>
 
-
+<?php
+if (isset($_SESSION['username'])) {
+    header("location:" . APPURL . "");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +46,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
+    <?php require "../config/config.php"; ?>
+    <?php
+    if (isset($_POST['submit'])) {
+        if (empty($_POST['username']) or (empty($_POST['password']))) {
+            $error = "One or more inputs are empty!";
+        } else {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $login = $conn->query("SELECT * FROM users WHERE username ='$username'");
+            $login->execute();
+
+            $fetch = $login->fetch(PDO::FETCH_ASSOC);
+            if ($login->rowCount() > 0) {
+                if (password_verify($password, $fetch['password'])) {
+                    $_SESSION['username'] = $fetch['username'];
+                    $_SESSION['user_id'] = $fetch['user_id'];
+                    $_SESSION['email'] = $fetch['email'];
+
+                    header("location: " . APPURL . "");
+                } else {
+                    $error = "Username or password incorrect!";
+                }
+            } else {
+                $error = "Username or password incorrect!";
+            }
+        }
+    }
+
+    ?>
+
+
     <div class="container">
         <div class="row justify-content-center">
             <form role="form" action="login.php" method="post" class="login-form">
                 <h2 class="text-center mb-4">
                     <img src="../src/darlogo/DAR Login logo.png" alt="DAR LOGO">
                 </h2>
+
+                <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+                <?php if (isset($success)) echo "<div class='alert alert-success'>$success</div>"; ?>
                 <div class="mb-1">
                     <label for="username" class="form-label">
                         <h6>Username</h6>

@@ -1,12 +1,10 @@
 <?php
-
 session_start();
 define("APPURL", "http://localhost/dar_dms");
-
 ?>
 
 <?php
-if (!isset($_SESSION['barangay'])) {
+if (!isset($_SESSION['username'])) {
     header("location:" . APPURL . "/auth/login.php");
 }
 ?>

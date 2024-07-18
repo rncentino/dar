@@ -1,24 +1,21 @@
-<?php require("includes/header.php"); ?>
+<?php require("./includes/header.php"); ?>
 
 <body>
   <div class="container mt-3">
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="./src/darlogo/logo.png" alt="Logo" width="70" /></a>
-        <form class="d-flex ms-auto me-3">
-          <div class="input-group">
-            <input type="text" class="form-control custom-outline" placeholder="Search....." />
-            <button type="button" class="btn custom-btn" aria-label="Search">
-              <i class="las la-search"></i>
-            </button>
-          </div>
-        </form>
+
         <div class="dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="./src/darlogo/logo.ico" alt="Avatar" class="rounded-circle" width="30" height="30" />
+            <img src="./src/darlogo/user-1.jpg" alt="Avatar" class="rounded-circle" width="50" height="50" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a href="#" class="btn btn-outline-success mx-3 mt-2 d-block">Logout</a>
+              <h6 class="text-center"><?php echo $_SESSION['email']; ?></h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item custom-outline" href="#"><i class="las la-user-edit"></i> Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a href="<?php echo APPURL; ?>/auth/logout.php" class="btn btn-outline-success mx-3 mt-2 d-block">Logout</a>
           </ul>
         </div>
       </div>
@@ -32,7 +29,15 @@
         <div>
           <h5>Manage Records</h5>
         </div>
-        <div>
+        <div class="d-flex justify-content-between">
+          <form class="d-flex ms-auto me-3">
+            <div class="input-group">
+              <input type="text" class="form-control custom-outline" placeholder="Search....." />
+              <button type="button" class="btn custom-btn" aria-label="Search">
+                <i class="las la-search"></i>
+              </button>
+            </div>
+          </form>
           <button type="button" class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#addRecordModal">
             <i class="las la-plus"></i> Add Record
           </button>
@@ -61,387 +66,13 @@
               <td>Engr. Tubod</td>
               <td>08-07-2000</td>
               <td>
-                  <button name="<?php echo $user['resident_id']; ?>"  type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-file'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-map'></i>
-                  </button>
+                <button name="<?php echo $user['resident_id']; ?>" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
+                  <i class='la la-file'></i>
+                </button>
+                <button name="<?php echo $user['resident_id']; ?>" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
+                  <i class='la la-map'></i>
+                </button>
               </td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td></td>
               <td>
                 <div class="d-flex justify-content-between">
                   <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
