@@ -11,7 +11,7 @@
             <img src="./src/darlogo/user-1.jpg" alt="Avatar" class="rounded-circle" width="50" height="50" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <h6 class="text-center"><?php echo $_SESSION['email']; ?></h6>
+            <h6 class="text-center"><?php echo $_SESSION['email']; ?></h6>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item custom-outline" href="#"><i class="las la-user-edit"></i> Edit Profile</a>
             <div class="dropdown-divider"></div>
@@ -115,84 +115,78 @@
                 <input type="text" class="form-control custom-outline" id="lot_no" name="lot_no" required>
               </div>
               <div class="mb-3">
+                <label for="ASP_no" class="form-label">ASP No</label>
+                <input type="text" class="form-control custom-outline" id="ASP_no" name="ASP_no" required>
+              </div>
+              <div class="mb-3">
                 <label for="survey_no" class="form-label">Survey No</label>
                 <input type="text" class="form-control custom-outline" id="survey_no" name="survey_no" required>
               </div>
               <div class="mb-3">
                 <label for="sheet_no" class="form-label">Sheet No</label>
                 <input type="text" class="form-control custom-outline" id="sheet_no" name="sheet_no" required>
+              </div><hr>
+              <div class="mb-3">
+                <label for="pdf_map" class="form-label">PDF Map</label>
+                <input type="file" class="form-control custom-outline" id="pdf_map" name="pdf_map" required>
+              </div>
+              <div class="mb-3">
+                <label for="kml_map" class="form-label">KML Map</label>
+                <input type="file" class="form-control custom-outline" id="kml_map" name="kml_map" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="municipalitySelect" class="form-label">Municipality</label>
+                <select class="form-select custom-outline" id="municipalitySelect">
+                  <option value="" selected disabled>Choose a municipality</option>
+                  <option value="Allen">Allen</option>
+                  <option value="Biri">Biri</option>
+                  <option value="Bobon">Bobon</option>
+                  <option value="Capul">Capul</option>
+                  <option value="Catarman">Catarman</option>
+                  <option value="Catubig">Catubig</option>
+                  <option value="Gamay">Gamay</option>
+                  <option value="Lapinig">Lapinig</option>
+                  <option value="Las Navas">Las Navas</option>
+                  <option value="Lavezares">Lavezares</option>
+                  <option value="LopeDeVega">Lope de Vega</option>
+                  <option value="Mapanas">Mapanas</option>
+                  <option value="Mondragon">Mondragon</option>
+                  <option value="Palapag">Palapag</option>
+                  <option value="Pambujan">Pambujan</option>
+                  <option value="Rosario">Rosario</option>
+                  <option value="San Antonio">San Antonio</option>
+                  <option value="San Isidro">San Isidro</option>
+                  <option value="San Jose">San Jose</option>
+                  <option value="San Roque">San Roque</option>
+                  <option value="San Vicente">San Vicente</option>
+                  <option value="Silvino Lobos">Silvino Lobos</option>
+                  <option value="Victoria">Victoria</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="barangay" class="form-label">Barangay</label>
+                <input type="text" class="form-control custom-outline" id="barangay" name="barangay" required>
+              </div>
+              <div class="mb-3">
+                <label for="land_owner" class="form-label">Land Owner</label>
+                <input type="text" class="form-control custom-outline" id="land_owner" name="land_owner" required>
+              </div>
+              <div class="mb-3">
+                <label for="geodetic_engr" class="form-label">Geodetic Engr.</label>
+                <input type="text" class="form-control custom-outline" id="geodetic_engr" name="geodetic_engr" required>
               </div>
               <div class="mb-3">
                 <label for="area" class="form-label">Area</label>
                 <input type="text" class="form-control custom-outline" id="area" name="area" required>
-              </div>
+              </div><hr>
               <div class="mb-3">
                 <label for="date_approved" class="form-label">Date Approved</label>
                 <input type="date" class="form-control custom-outline" id="date_approved" name="date_approved" required>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <div class="mb-3">
-                  <label for="municipalitySelect" class="form-label">Municipality</label>
-                  <select class="form-select custom-outline" id="municipalitySelect">
-                    <option value="" selected disabled>Choose a municipality</option>
-                    <option value="allen">Allen</option>
-                    <option value="biri">Biri</option>
-                    <option value="bobon">Bobon</option>
-                    <option value="capul">Capul</option>
-                    <option value="catarman">Catarman</option>
-                    <option value="catubig">Catubig</option>
-                    <option value="gamay">Gamay</option>
-                    <option value="lapinig">Lapinig</option>
-                    <option value="lasNavas">Las Navas</option>
-                    <option value="lavezares">Lavezares</option>
-                    <option value="lopeDeVega">Lope de Vega</option>
-                    <option value="mapanas">Mapanas</option>
-                    <option value="mondragon">Mondragon</option>
-                    <option value="palapag">Palapag</option>
-                    <option value="pambujan">Pambujan</option>
-                    <option value="rosario">Rosario</option>
-                    <option value="sanAntonio">San Antonio</option>
-                    <option value="sanIsidro">San Isidro</option>
-                    <option value="sanJose">San Jose</option>
-                    <option value="sanRoque">San Roque</option>
-                    <option value="sanVicente">San Vicente</option>
-                    <option value="silvinoLobos">Silvino Lobos</option>
-                    <option value="victoria">Victoria</option>
-                  </select>
-                </div>
-              </div>
-              <div class="mb-3">
-                <div class="mb-3">
-                  <label for="barangaySelect" class="form-label">Barangays</label>
-                  <select class="form-select custom-outline" id="barangaySelect" disabled>
-                    <option value="" selected disabled>Choose a barangay</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="land_owner" class="form-label">Land Owner</label>
-                  <input type="text" class="form-control custom-outline" id="land_owner" name="land_owner" required>
-                </div>
-                <div class="mb-3">
-                  <label for="geodetic_engr" class="form-label">Geodetic Engr.</label>
-                  <input type="text" class="form-control custom-outline" id="geodetic_engr" name="geodetic_engr" required>
-                </div>
-                <div class="mb-3">
-                  <label for="survey_type" class="form-label">Survey Type</label>
-                  <input type="text" class="form-control custom-outline" id="survey_type" name="survey_type" required>
-                </div>
-                <div class="mb-3">
-                  <label for="map" class="form-label">Map</label>
-                  <input type="file" class="form-control custom-outline" id="map" name="map" required>
-                </div>
-                <div class="mb-3">
-                  <label for="map" class="form-label">Map</label>
-                  <input type="file" class="form-control custom-outline" id="map" name="map" required>
-                </div>
-              </div>
-            </div>
-            <div class="mb-6">
+            <div class="mb-3">
               <button type="submit" class="btn custom-btn" style="width: 100%;">Add Record</button>
             </div>
           </form>
