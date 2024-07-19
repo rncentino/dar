@@ -1,3 +1,4 @@
+<?php require("./config/config.php") ?>
 <?php require("./includes/header.php"); ?>
 
 <body>
@@ -58,37 +59,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>123</th>
-              <td>456</td>
-              <td>789</td>
-              <td>Talisay, Catarman</td>
-              <td>Engr. Tubod</td>
-              <td>08-07-2000</td>
-              <td>
-                <button name="<?php echo $user['resident_id']; ?>" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                  <i class='la la-file'></i>
-                </button>
-                <button name="<?php echo $user['resident_id']; ?>" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                  <i class='la la-map'></i>
-                </button>
-              </td>
-              <td>
-                <div class="d-flex justify-content-between">
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#viewModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-info">
-                    <i class='la la-eye'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#editModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-primary">
-                    <i class='la la-edit'></i>
-                  </button>
-                  <button name="<?php echo $user['resident_id']; ?>" style="width: 30%;" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $user['resident_id']; ?>" data-whatever="@getbootstrap" class="btn btn-sm btn-danger">
-                    <i class='la la-trash'></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
 
-
+          
+          
           </tbody>
         </table>
       </div>
@@ -104,7 +77,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="addRecordForm" class="row g-3">
+          <form role="form" method="post" action="index.php" id="addRecordForm" class="row g-3" enctype="multipart/form-data">
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="OCT_TCT_no" class="form-label">OTC/TCT No</label>
@@ -125,7 +98,8 @@
               <div class="mb-3">
                 <label for="sheet_no" class="form-label">Sheet No</label>
                 <input type="text" class="form-control custom-outline" id="sheet_no" name="sheet_no" required>
-              </div><hr>
+              </div>
+              <hr>
               <div class="mb-3">
                 <label for="pdf_map" class="form-label">PDF Map</label>
                 <input type="file" class="form-control custom-outline" id="pdf_map" name="pdf_map" required>
@@ -180,14 +154,15 @@
               <div class="mb-3">
                 <label for="area" class="form-label">Area</label>
                 <input type="text" class="form-control custom-outline" id="area" name="area" required>
-              </div><hr>
+              </div>
+              <hr>
               <div class="mb-3">
                 <label for="date_approved" class="form-label">Date Approved</label>
                 <input type="date" class="form-control custom-outline" id="date_approved" name="date_approved" required>
               </div>
             </div>
             <div class="mb-3">
-              <button type="submit" class="btn custom-btn" style="width: 100%;">Add Record</button>
+              <button name="submit" type="submit" class="btn custom-btn" style="width: 100%;">Add Record</button>
             </div>
           </form>
         </div>

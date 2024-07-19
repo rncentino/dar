@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quick Start - Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/kml.js"></script>
+    
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px;"></div>
+    <script>
+        const map = L.map('map').setView([51.505, -0.09], 13);
+
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        fetch('assets/0.kml')
+            .then(res => res.text())
+            .then(kmltext => {
+                const parser = new DOMParser();
+                const kml = parser.parseFromString(kmltext, 'text/xml');
+                
+                console.log('Parsed KML:', kml);
+
+                // Try to create the KML layer and log any potential errors
+                try {
+                    const track = new L.KML(kml);
+                    console.log('Created KML Layer:', track);
+
+                    map.addLayer(track);
+
+                    const bounds = track.getBounds();
+                    console.log('Bounds:', bounds);
+
+                    map.fitBounds(bounds);
+                } catch (error) {
+                    console.error('Error creating or adding KML layer:', error);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading KML file:', error);
+            });
+    </script>
+</body>
+</html>
