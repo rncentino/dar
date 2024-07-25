@@ -59,10 +59,56 @@
             </tr>
           </thead>
           <tbody>
+          <?php
+                                    $query = "SELECT id, OCT_TCT_no, lot_no, ASP_no, survey_no, sheet_no, pdf_map, kml_map, municipality, barangay, land_owner, geodetic_engr, area, date_approved, uploaded_at FROM records";
+                                    $result = $conn->query($query);
 
-          
-          
-          </tbody>
+                                    if ($result->num_rows > 0) {
+                                      while ($row = $result->fetch_assoc()) {
+                                          echo "<tr>";
+                                          echo "<td class='border-bottom-0'><h6 class='fw-semibold mb-1'>{$row['OCT_TCT_no']}</h6></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['lot_no']}</p></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['ASP_no']}</p></td>";
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['survey_type']}</p></td>";
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['sheet_no']}</p></td>";
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['area']}</p></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['municipality']}, {$row['barangay']}</p></p></td>";
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['land_owner']}</p></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>Engr. {$row['geodetic_engr']}</p></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['date_approved']}</p></td>";
+                                          
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['user_id']}</p></td>";
+                                          // echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>{$row['uploaded_at']}</p></td>";
+                                          echo "<td class='border-bottom-0'><p class='mb-0 fw-normal'>
+                                              <button href='uploads/pdf/{$row['pdf_map']}' class='btn btn-primary view-pdf-btn' data-bs-toggle='modal' data-bs-target='#viewPDFModal'>
+                                                        <i class='las la-file-pdf'></i>
+                                              </button>
+                                             <button href='uploads/kml/{$row['kml_map']}' class='btn btn-info  view-pdf-btn' data-bs-toggle='modal' data-bs-target='#viewImgModal'>
+                                                        <i class='las la-map text-white'></i>
+                                              </button>
+                                               
+                                                </td>";
+                                          
+                                          echo "<td class='border-bottom-0'> 
+                                              <button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#editRecordModal' onclick='editRecord({$row['id']})'>
+                                                <i class='las la-eye text-white'></i>
+                                              </button>
+                                                                                                           
+                                              <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#editRecordModal' onclick='editRecord({$row['id']})'>
+                                                <i class='las la-edit text-white'></i>
+                                              </button>
+                                              <button class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#deleteRecordModal' onclick='deleteRecord({$row['id']})'>
+                                                <i class='las la-trash'></i>
+                                              </button>
+                                          </td>";
+                                          echo "</tr>";
+                                      }
+                                    } else {
+                                      echo "<tr><td colspan='15' class='border-bottom-0'><h6 class='fw-semibold mb-0 text-center'>No data available</h6></td></tr>";
+                                    }
+                                  ?>
+                                </tbody>
+    
         </table>
       </div>
     </div>
@@ -112,7 +158,7 @@
             <div class="col-md-6">
               <div class="mb-3">
                 <label for="municipalitySelect" class="form-label">Municipality</label>
-                <select class="form-select custom-outline" id="municipalitySelect">
+                <select class="form-select custom-outline" id="municipality" name="municipality">
                   <option value="" selected disabled>Choose a municipality</option>
                   <option value="Allen">Allen</option>
                   <option value="Biri">Biri</option>
@@ -171,4 +217,81 @@
   </div>
   <!-- Modal -->
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <?php require("includes/footer.php"); ?>
+
+
+  <script>
+
+//alert
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false, 
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
+// add record
+$(document).ready(function() {
+    $('#addRecordForm').submit(function(e) {
+        e.preventDefault(); 
+
+        $.ajax({
+            url: 'add-record.php',
+            type: 'POST', 
+            data: new FormData(this), 
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                if (response.trim() === "success") {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Record added successfully!'
+                    });
+                    
+                    $('#addRecordForm')[0].reset();
+                    $('#addRecordModal').modal('hide');
+
+                    setTimeout(function() {
+                        $('#recordTable').load(location.href + ' #recordTable');
+                    }, 500);
+
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: response
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Failed to add record. Please try again later.'
+                });
+            }
+        });
+    });
+});
+
+
+//view pdf 
+$(document).ready(function() {
+    $('.view-pdf-btn').click(function(e) {
+        e.preventDefault();
+        var pdfUrl = $(this).attr('href');
+        
+        PDFObject.embed(pdfUrl, '#pdfViewer', {
+            height: "450px",
+            width: "100%",  
+        });
+    });
+});
+    
+  </script>

@@ -1,22 +1,19 @@
-<?php
-    try {
+<?php  
 
-        //host
-        define("HOST", "localhost");
+$sname = "localhost";
+$uname = "root";
+$password = "";
+$db_name = "dar";
 
-        //dbname
-        define("DBNAME", "dar");
+$conn = mysqli_connect($sname, $uname, $password, $db_name);
 
-        //user
-        define("USER", "root");
+if (!$conn) {
+	echo "Connection Failed!";
+	exit();
+} 
 
-        //password
-        define("PASS", "");
+// else {
+// 	echo "Connection Success!";
+// } 
 
-        $conn = new PDO("mysql:host=".HOST.";dbname=".DBNAME."", USER, PASS);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    } catch ( PDOException $Exception ) {
-        echo $Exception->getMessage();
-    }
 ?>

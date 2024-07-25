@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="js/leaflet.css" />
-    <script src="js/leaflet.js"></script>
-    <script src="js/leaflet-omnivore.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+
 </head>
 <body>
     <div id="map" style="width: 900px; height: 500px;">
@@ -19,7 +20,8 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        var kmlLayer = omnivore.kml('assets/new.kml').addTo(map);
+        // var kmlLayer = omnivore.kml('assets/example1.kml').addTo(map);
+        var kmlLayer = omnivore.kml('assets/KML/6.kml').addTo(map);
 
         kmlLayer.on('ready', function() {
             map.fitBounds(kmlLayer.getBounds());

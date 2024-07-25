@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open KML in Google Earth Pro</title>
+</head>
+<body>
+    <h1>Open KML File in Google Earth Pro</h1>
+    <!-- read locally as assets/KML/1.kml -->
+    <a id="kmlLink" href="#" onclick="openInGoogleEarth(event, 'assets/KML/1.kml')">
+        Open KML File
+    </a>
+
+    <script>
+        function openInGoogleEarth(event, fileUrl) {
+            event.preventDefault();
+            // Redirect using googleearth protocol
+            window.location.href = 'googleearth://' + fileUrl;
+        }
+    </script>
+</body>
+</html>
